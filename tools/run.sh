@@ -8,6 +8,7 @@
 # v2.0
 # https://github.com/cotes2020/jekyll-theme-chirpy
 # © 2019 Cotes Chung
+# Test comment :3
 # Published under MIT License
 
 set -eu
