@@ -1,16 +1,5 @@
 #!/bin/bash
 
-# Run jekyll site at http://127.0.0.1:4000
-#
-# Requirement:
-#   Option '-r, --realtime' needs fswatch › http://emcrisostomo.github.io/fswatch/
-#
-# v2.0
-# https://github.com/cotes2020/jekyll-theme-chirpy
-# © 2019 Cotes Chung
-# Test comment :3
-# Published under MIT License
-
 set -eu
 
 WORK_DIR="$(dirname "$(dirname "$(realpath "$0")")")"
