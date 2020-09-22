@@ -8,7 +8,7 @@
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 #--------------------------
 
-title: The Sharp Owl                          # the main title
+title: The_Sharp_Owl                          # the main title
 
 tagline: Welcome to my blog  # it will display as the sub-title
 
@@ -18,7 +18,7 @@ description: >-                        # used by seo meta and the atom feed
   and focuses on text presentation.
 
 # Replace with the website url, e.g. 'https://username.github.io'
-url: 'protocol://domain'
+url: 'https://TheSharpOwl.github.io'
 
 author: Mohamad_Ziad_Alkabakibi                  # change to your full name
 
@@ -28,7 +28,7 @@ github:
   username: TheSharpOwl             # change to your github username
 
 twitter:
-  username: @Ziad_Kabakibi           # change to your twitter username
+  username: Ziad_Kabakibi           # change to your twitter username
 
 social:
   name: Mohamad Ziad Alkabakibi                 # it will shows as the copyright owner in Footer
