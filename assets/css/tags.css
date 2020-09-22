@@ -7,7 +7,7 @@
 ---
 
 
-{% include_relative _addon/main.scss %}
+{% include_relative _addon/main.css %}
 
 .tag {
   border-radius: 0.7em;

@@ -7,8 +7,8 @@
 ---
 
 
-{% include_relative _addon/main.scss %}
-{% include_relative _addon/syntax.scss %}
+{% include_relative _addon/main.css %}
+{% include_relative _addon/syntax.css %}
 
 $prompt-older: "{{ site.data.label.post.button.previous }}";
 $prompt-newer: "{{ site.data.label.post.button.next }}";

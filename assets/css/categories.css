@@ -7,7 +7,7 @@
 ---
 
 
-{% include_relative _addon/main.scss %}
+{% include_relative _addon/main.css %}
 
 %category-icon-color {
   color: gray;
