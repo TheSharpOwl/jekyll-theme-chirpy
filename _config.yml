@@ -13,14 +13,13 @@ title: The Sharp Owl                          # the main title
 tagline: Welcome to my blog  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
+  Hello, my name is Mohamad and I am software engineering student.
+  Welcome to my blog !
 
 # Replace with the website url, e.g. 'https://username.github.io'
 url: 'https://TheSharpOwl.github.io'
 
-author: Mohamad_Ziad_Alkabakibi                  # change to your full name
+author: Mohamad Ziad Alkabakibi                  # change to your full name
 
 avatar: /assets/img/sample/avatar.jpg   # support internet resources
 
@@ -51,7 +50,7 @@ google_site_verification: google_meta_tag_verification # change to your verifica
 baseurl: ''
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: Europe/Moscow
 
 google_analytics:
   id: ''          # Fill with your Google Analytics ID
