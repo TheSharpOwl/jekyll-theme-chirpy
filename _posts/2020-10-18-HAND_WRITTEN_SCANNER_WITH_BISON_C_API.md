@@ -1,8 +1,8 @@
 ---
-title: Hand-written scanner with Bison using C API
-date: 2020-10-17 13:00:00 +/-0800
+title: Hand-written scanner with Bison's C API
+date: 2020-10-18 12:00:00 +/-0800
 categories: [Compilers, Bison]
-tags: c
+tags: C
 ---
 You may have a compilers course and wanna learn how to use Bison with your other code. When I had this course I got in a big confusion while trying to use Bison with a Hand 
 Written parser (in my opinion documentation isn't easy for a bachelor and the deadline won't wait for you to read all of it). As a result, I had to ask people just to know how to make Bison use my functions instead of Flex's (most code on internet Flex is used). Well, I finished the course (with not much disaster, thank God) and wanted to write here about it !
@@ -333,6 +333,7 @@ You can find all the final code examples [here](https://github.com/TheSharpOwl/B
 There's a Bison C++ API which allows you to use dynamic types such as ``std::string``. I will write about it in another post. You can use C API with C++ scanner but you have to use a pointer to the ``std::string`` and other things such as ``std::shared_pointer`` will be really difficult to use here.
 
 **Further Reading:**<br>
+1. [Bison Documentation](https://www.gnu.org/software/bison/manual/bison.html).
 1. [My parser for an imperative programming language](https://github.com/TheSharpOwl/FoobarCompiler/tree/061d6f544a72dcd4acd509b3b933999f4f63a5d6/compiler) (it is C++ Scanner using Bison's C API but it would be useful to read).
 2. [Flex & Bison: Text Processing Tools 1st Edition book
 by John Levine](https://www.amazon.com/flex-bison-Text-Processing-Tools/dp/0596155972).
