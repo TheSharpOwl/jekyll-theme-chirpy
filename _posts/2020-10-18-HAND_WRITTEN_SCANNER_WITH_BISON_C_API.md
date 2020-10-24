@@ -2,7 +2,7 @@
 title: Hand-written scanner with Bison's C API
 date: 2020-10-18 12:00:00 +/-0800
 categories: [Compilers, Bison]
-tags: C Bison
+tags: [C, Bison]
 ---
 You may have a compilers course and wanna learn how to use Bison with your other code. When I had this course I got in a big confusion while trying to use Bison with a Hand 
 Written parser (in my opinion documentation isn't easy for a bachelor and the deadline won't wait for you to read all of it). As a result, I had to ask people just to know how to make Bison use my functions instead of Flex's (most code on internet Flex is used). Well, I finished the course (with not much disaster, thank God) and wanted to write here about it !
