@@ -1,5 +1,5 @@
 ---
-title: Hand-written scanner with Bison's C API
+title: Using Bison C API With Hand-written Scanner
 date: 2020-10-18 12:00:00 +/-0800
 categories: [Compilers, Bison]
 tags: [C, Bison]
