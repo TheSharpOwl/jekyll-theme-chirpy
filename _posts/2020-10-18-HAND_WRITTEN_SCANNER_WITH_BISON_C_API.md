@@ -107,10 +107,11 @@ int main()
 ```
 
 5. Now the Bison part. I won't go deep into grammar rules and the way you design them (I learned grammar in Theoretical Computer Science course) but I will talk about the programming aspects. <br> <br>
-Bison file consists of 3 parts :
-    1.  C code part(s) for includes and signatures (will be at the beginning of the generated .h file)
-    2. Grammar part
-    3. Function defintions part
+Bison file consists of 4 parts :
+    1. Defines and requirements (statements start with ``%`` usually)
+    2. C code part(s) for includes and signatures (will be at the beginning of the generated .h file)
+    3. Grammar part
+    4. Function defintions part
 <br>
 
 6. Let's take a look at this example and I will explain it after that :

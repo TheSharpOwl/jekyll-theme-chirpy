@@ -4,20 +4,18 @@ date: 2020-10-24 22:00:00 +/-0800
 categories: [Compilers, Bison]
 tags: [Cpp, Bison]
 ---
-In this post, I'll talk about how can you use Bison's C++ API. I suggest you to take a look at the [tutorial I wrote about using C API](https://thesharpowl.github.io/posts/HAND_WRITTEN_SCANNER_WITH_BISON_C_API/) to gain more knowledge about how Bison works.<br>
+In this post, I'll talk about how can you use Bison's C++ API. Take a look at the [tutorial I wrote about using C API](https://thesharpowl.github.io/posts/HAND_WRITTEN_SCANNER_WITH_BISON_C_API/) especially the parts about installing Bison latest version and Compiler Construction. Also, to gain more knowledge about how Bison works.<br>
 <br>
-Well, as I said in the C API post, you can't use dynamic types such as ``std::string`` or ``std::vector`` as Bison types which is one of the reasons of using C++ API (The main reason is that C++ is cooler of course :sunglasses: ).
-<br>
-<br>
+1. Well, as I said in the C API post, you can't use dynamic types such as ``std::string`` or ``std::vector`` as Bison types which is one of the reasons of using C++ API (The main reason is that C++ is cooler of course :sunglasses: ). 
 
-Again this tutorial is not focusing on Bison itself, just the C++ API part. 
+    Again this tutorial is not focusing on Bison itself, just the C++ API part. 
 
-We have a simple input file in an imperative language :<br>
+2. We have a simple input file in an imperative language :<br>
 ```
-var x is integer
+    var some_identifer is integer
 ```
 <br>
-Now let's write a simple Scanner in C++ (same idea as the C one) :<br>
+3. Now let's write a simple Scanner in C++ (same idea as the C one) :<br>
 
 ```
 #include<iostream>
@@ -88,5 +86,22 @@ int main()
 }
 ```
 
-<br><br>
-## To be continued....
+4. Now the Bison part. (not going to go deep into grammar rules or the way you design them. I learned grammar in Theoretical Computer Science course) but I will talk about the programming aspects.<br>
+
+    * Bison file consists of 4 parts :
+
+        I. Defines and requirements (statementsstart    with ``%`` usually).
+
+        II. C code part(s) for includes andsignatures   (will be at the beginning of thegenerated .h  file)
+
+        III. Grammar part
+
+        IV. Function defintions part
+
+5. Take a look at this Bison with C++ example (I will explain after that) :
+
+```
+
+```
+
+To Be continued......
