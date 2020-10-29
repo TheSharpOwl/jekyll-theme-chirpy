@@ -16,7 +16,7 @@ title: About
 
 * #### **Others** : OpenGL, Unreal Engine, Data structres and Algorithms.
 
-* ### Github: [TheSharpOwl]() 
+* ### Github: [TheSharpOwl](https://github.com/TheSharpOwl) 
 
 # Projects
 
