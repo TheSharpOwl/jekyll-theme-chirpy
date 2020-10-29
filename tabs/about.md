@@ -15,7 +15,6 @@ title: About
 * #### **Programming** : C++ (favorite), C, Python, Golang.
 
 * #### **Others** : OpenGL, Unreal Engine, Data structres and Algorithms.
-<br>
 
 * ### Github: [TheSharpOwl]() 
 
