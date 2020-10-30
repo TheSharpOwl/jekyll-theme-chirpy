@@ -87,7 +87,7 @@ int main()
 ```
 
 4. Now the Bison part. (not going to go deep into grammar rules or the way you design them. I learned grammar in Theoretical Computer Science course) but I will talk about the programming aspects.<br>
-
+    * ####  **Save the Bison file with .ypp extenstion to make it work properly with a C++ compiler**
     * Bison file consists of 4 parts :
 
         I. Defines and requirements (statementsstart    with ``%`` usually).
@@ -158,5 +158,12 @@ int main()
 }
 ```
 
-(Warn about ypp extension !!!!!!!!!!!!!!)
-To Be continued......
+1. First, we are using Bison macros (not sure of the official name) which have ``%`` at the beginning of them:
+    
+    * Adding a condition about the least version which can be used with the used programming language.
+    * **Note: As the documentation says, C++ Bison API is pure always so no need to add ``%define api.pure full`` as we did in the C API.**
+    * ``%define api.value.type variant`` : As we know in C++, we don't use ``unions`` (you can but the standard doesn't recommend it usually. You can check [this](https://en.cppreference.com/w/cpp/utility/variant) and [this question](https://stackoverflow.com/questions/42082328/where-to-use-stdvariant-over-union)). So now you can directly just write the type of each token without the need to define a union with field names as we did in the C API.
+    * ``%define api.token.constructor``: this one will generate functions in our .hpp file for each token which has a type. For example ``%type <std::string> IDENT`` generates a constructor : ``make_IDENT(std::string)`` (also another one ``make_IDENT(std::string&)``). As a result, we can use it in our scanner later, it will put the string in the parameter in the value which corresponds to our ``IDENT`` token and all we have to do is ``return make_IDENT(string_variable)`` (in the C API we had to do ``lval->s = some_char_array`` where s is the name of the char array field in our union and then return the token).
+
+
+    TO BE continueed ......
