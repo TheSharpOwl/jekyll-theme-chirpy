@@ -158,12 +158,25 @@ int main()
 }
 ```
 
-1. First, we are using Bison macros (not sure of the official name) which have ``%`` at the beginning of them:
+1. First, we are using Bison macros (not sure of their official name) which have ``%`` at the beginning of them:
     
     * Adding a condition about the least version which can be used with the used programming language.
     * **Note: As the documentation says, C++ Bison API is pure always so no need to add ``%define api.pure full`` as we did in the C API.**
     * ``%define api.value.type variant`` : As we know in C++, we don't use ``unions`` (you can but the standard doesn't recommend it usually. You can check [this](https://en.cppreference.com/w/cpp/utility/variant) and [this question](https://stackoverflow.com/questions/42082328/where-to-use-stdvariant-over-union)). So now you can directly just write the type of each token without the need to define a union with field names as we did in the C API.
     * ``%define api.token.constructor``: this one will generate functions in our .hpp file for each token which has a type. For example ``%type <std::string> IDENT`` generates a constructor : ``make_IDENT(std::string)`` (also another one ``make_IDENT(std::string&)``). As a result, we can use it in our scanner later, it will put the string in the parameter in the value which corresponds to our ``IDENT`` token and all we have to do is ``return make_IDENT(string_variable)`` (in the C API we had to do ``lval->s = some_char_array`` where s is the name of the char array field in our union and then return the token).
 
+    * ``%define parse.assert`` seems to help us with useful error messages and warnings according to [this doc page](https://www.gnu.org/software/bison/manual/html_node/_0025define-Summary.html) :
 
-    TO BE continueed ......
+        > Directive: ``%define parse.assert``
+        >   * Languages(s): C, C++ <br>
+        >   * Purpose: Issue runtime assertions to   catch invalid uses. In C, some important  invariants in the implementation of the  parser are checked when this option is   enabled.<br><br>
+        >   * In C++, when variants are used (see    section C++ Variants), symbols must be     constructed and destroyed properly. This    option checks these constraints using  runtime type information (RTTI). Therefore   the generated code cannot be compiled with    RTTI disabled (via compiler options such as    -fno-rtti).<br>
+        >   * Accepted Values: Boolean <br>
+        >   * Default Value: false
+
+
+2. ``%code requires`` block which contains the required things which must be added at the beginning of our .hpp file. For example, we need ``<string>`` because in the header file, Bison wants to use it for making the ``IDENT`` constructor. (I don't know if I should add ``#pragma once`` or not but just in case).
+
+3. **We defined ``yylex()`` (which belongs to the yy namespace in the C++ API) inside the ``%code requires`` block to make sure that the definition will be before any generated code.** (Also, remember that to override a function inside a name space in C++, you have to put it inside the namespace like I did. aka **defining it like : ``yy::yylex()`` won't work**).
+
+To be cont...
