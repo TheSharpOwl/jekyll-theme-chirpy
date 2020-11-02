@@ -97,7 +97,7 @@ int main()
         III. Grammar part
 
         IV. Function defintions part
-
+### **Note that in Bison's C++ API, a class ``Parser`` is generated unlike in the C API were we have only functions.**<br>
 5. Take a look at this Bison with C++ example (I will explain after that) :
 
 ```
@@ -176,7 +176,14 @@ int main()
 
 
 2. ``%code requires`` block which contains the required things which must be added at the beginning of our .hpp file. For example, we need ``<string>`` because in the header file, Bison wants to use it for making the ``IDENT`` constructor. (I don't know if I should add ``#pragma once`` or not but just in case).
+**Note in (1) we did forward declreation because we want to override ``yylex()`` (as you will see next) which belongs to the class ``parser`` while the class definition will be after the overriding. For more info about Forward Decleration [read this](https://stackoverflow.com/questions/4757565/what-are-forward-declarations-in-c)**.
 
-3. **We defined ``yylex()`` (which belongs to the yy namespace in the C++ API) inside the ``%code requires`` block to make sure that the definition will be before any generated code.** (Also, remember that to override a function inside a name space in C++, you have to put it inside the namespace like I did. aka **defining it like : ``yy::yylex()`` won't work**).
-
+3. **We defined ``yylex()`` (which belongs to the yy namespace in the C++ API) inside the ``%code requires`` block to make sure that the definition will be before any generated code.** (Also, remember that to override a function inside a name space in C++, you have to put it inside the namespace like I did. aka **defining it like : ``yy::yylex()`` won't work**).<br>
+**Note: in (2) we wrote ``parser::`` because ``yylex`` function belongs to the class ``parser`` (not a namespace!!)**
+4. As you can remember from the C API, we have ``yyerror`` function but **we don't have to rewrite the signature of it because it will be generated anyway and we just have to write the impelementation as said in (3)**.
+5. Now we have to define the tokens and using ``%token`` and rewrite the names of the ones which have a type to specify the type to Bison using ``%type <some_type_name>``. Now as we said in the first point, there will be a constructor for each type with a prameter of its type. (we will use this soon don't worry).
+6.In the grammar rules section, I declared an empty rule for ``Program`` so that the parser will have a starting point **(Note that always there should be such rule, otherwise the parser mostly will return a syntax error and won't run from the first place)**
+<br>
+<br>
+Note : add Program empty or variable dec to the grammar
 To be cont...
