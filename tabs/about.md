@@ -26,3 +26,5 @@ title: About
 4. #### [Tsuki](https://github.com/kuredoro/tsuki): A cool Distirbuted System with naming server using GoLang.<br>
 
 5. #### [Switching Generator](https://github.com/TheSharpOwl/switching-generator): A practical implementation of a Switching Generator paper using Verilog HDL
+
+### [CV download] (https://drive.google.com/file/d/1Zps5Z5lJHcVYkKKm9KFpSanRo16gkeiF/view?usp=sharing)
