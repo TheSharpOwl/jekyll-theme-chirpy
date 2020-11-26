@@ -27,4 +27,4 @@ title: About
 
 5. #### [Switching Generator](https://github.com/TheSharpOwl/switching-generator): A practical implementation of a Switching Generator paper using Verilog HDL
 
-### [CV download] (https://drive.google.com/file/d/1Zps5Z5lJHcVYkKKm9KFpSanRo16gkeiF/view?usp=sharing)
+### [CV download](https://drive.google.com/file/d/1Zps5Z5lJHcVYkKKm9KFpSanRo16gkeiF/view?usp=sharing)
