@@ -6,7 +6,7 @@ tags: [Cpp, Bison]
 ---
 In this post, I'll talk about how can you use Bison's C++ API. Take a look at the [tutorial I wrote about using C API](https://thesharpowl.github.io/posts/HAND_WRITTEN_SCANNER_WITH_BISON_C_API/) especially the parts about installing Bison latest version and Compiler Construction. Also, to gain more knowledge about how Bison works.<br>
 <br>
-1. Well, as I said in the C API post, you can't use dynamic types such as ``std::string`` or ``std::vector`` as Bison types which is one of the reasons of using C++ API (The main reason is that C++ is cooler of course :sunglasses: ). 
+1. Well, as I said in the C API post, you can't use dynamic types such as ``std::string`` or ``std::vector`` as Bison types which is one of the reasons of using C++ API (The main reason is that C++ is cooler of course !). 
 
     Again this tutorial is not focusing on Bison itself, just the C++ API part. 
 
@@ -92,11 +92,11 @@ int main()
 
         I. Defines and requirements (statementsstart    with ``%`` usually).
 
-        II. C code part(s) for includes andsignatures   (will be at the beginning of thegenerated .h  file)
+        II. C/С++ code part(s) for includes and signatures   (will be at the beginning of the generated .h  file)
 
         III. Grammar part
 
-        IV. Function defintions part
+        IV. Function defintions' part
 ### **Note that in Bison's C++ API, a class ``Parser`` is generated unlike in the C API were we have only functions.**<br>
 5. Take a look at this Bison with C++ example (I will explain after that) :
 
@@ -134,8 +134,11 @@ int main()
 
 %%
 
-VariableDeclaration:
-|VAR IDENT IS INT { /* no actions for now (4) */ }
+Program:
+|Program VariableDeclaration
+;
+
+VariableDeclaration: VAR IDENT IS INT { /* no actions for now (4) */ }
 ;
 
 %%
@@ -154,6 +157,8 @@ namespace yy
 int main()
 {
     yy::parser p; // (5)
+    // will be deleted later just make sure it prints it
+    std::cout << "hello\n" << std::endl;
     return 0;
 }
 ```
@@ -182,8 +187,8 @@ int main()
 **Note: in (2) we wrote ``parser::`` because ``yylex`` function belongs to the class ``parser`` (not a namespace!!)**
 4. As you can remember from the C API, we have ``yyerror`` function but **we don't have to rewrite the signature of it because it will be generated anyway and we just have to write the impelementation as said in (3)**.
 5. Now we have to define the tokens and using ``%token`` and rewrite the names of the ones which have a type to specify the type to Bison using ``%type <some_type_name>``. Now as we said in the first point, there will be a constructor for each type with a prameter of its type. (we will use this soon don't worry).
-6.In the grammar rules section, I declared an empty rule for ``Program`` so that the parser will have a starting point **(Note that always there should be such rule, otherwise the parser mostly will return a syntax error and won't run from the first place)**
+6. In the grammar rules section, I declared an empty rule for ``Program`` so that the parser will have a starting point **(Note that always there should be such rule, otherwise the parser mostly will return a syntax error and won't run from the first place)**
 <br>
 <br>
-Note : add Program empty or variable dec to the grammar
+
 To be cont...
