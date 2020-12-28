@@ -190,5 +190,27 @@ int main()
 6. In the grammar rules section, I declared an empty rule for ``Program`` so that the parser will have a starting point **(Note that always there should be such rule, otherwise the parser mostly will return a syntax error and won't run from the first place)**
 <br>
 <br>
+Now inside ``Parser.tab.hpp`` there's :
+```
+static symbol_type make_IDENT (const std::string& v)
+{
+  return symbol_type (token::IDENT, v);
+}
+```
 
+* This is a generated function which returns a type called ``symbol_type`` which Bison understands and supports for applying its grammar but as you can see, we should give it a string as a parameter (which is passed by a const refrernce of course since it's faster). Also, notice that it sends something else in addition to the string:
+``token::IDENT`` where ``token`` is an enum and ``IDENT`` is one of the values which that enum can take.
+
+* There are similar functions and enum values for the other tokens `` VAR, INT, IS`` but for example we have:
+``` 
+static symbol_type make_VAR ()
+{
+  return symbol_type (token::VAR);
+}
+```
+* We don't have a parameter and it only keeps the enum inside the symoble info (calling ``symbol_type`` constructor with 1 parameter) because we don't have a type attached to this token so that's all Bison needs in this case.
+
+Now it's time to integrate our Bison parser with our C++ scanner : ....
+<br>
+<br>
 To be cont...
