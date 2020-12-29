@@ -71,9 +71,9 @@ layout: default
           {{ content | replace: '<img src=', '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src=' }}
         {% else %}
           {{ content }}
+        {% include matched-content.html %}
         {% endif %}
       </div>
-      {% include matched-content.html %}
       <div class="post-tail-wrapper text-muted">
 
         <!-- categories -->
