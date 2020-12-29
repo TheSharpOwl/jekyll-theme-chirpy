@@ -217,7 +217,148 @@ static symbol_type make_VAR ()
 ```
 * We don't have a parameter and it only keeps the enum inside the symoble info (calling ``symbol_type`` constructor with 1 parameter) because we don't have a type attached to this token so that's all Bison needs in this case.
 
-Now it's time to integrate our Bison parser with our C++ scanner : ....
-<br>
-<br>
-To be cont...
+Now it's time to integrate our Bison parser with our C++ scanner using the make_ methods in addition to using the correct way to define and override the parser class function.
+
+The scanner will have this code : (comments might be repeated for the final version and for better understanding)
+
+```
+#include<iostream>
+#include<fstream>
+#include<string>
+#include "parser.tab.hpp"
+// I know that global variables are often bad. Forgive me I wanna just explain the idea ((
+std::ifstream fin;
+
+yy::parser::symbol_type get_next_token()
+{
+    std::string s;
+    char c;
+    while (true)
+    {
+        // could be done better but organized it like this to edit only assignments and returns when using Bison API
+        if (!fin.eof())
+            fin.get(c);// get one character
+        else // return the end of the file so the parser will stop
+            return yy::parser::make_YYEOF();
+
+        if (c == ' ' || c == '\n' || fin.eof())
+        {
+            if (s.empty()) // we only have this character
+            {
+                if (fin.eof())
+                    return yy::parser::make_YYEOF();
+                    
+                //otherwise go and see what's next
+                return get_next_token();
+            }
+            else
+            {
+                if (!fin.eof())
+                {
+                   // now we need to put the pointer exactly after the word (undo the last step)
+                   fin.unget();
+                }
+
+                if (s == "var") // the last word is var
+                    return yy::parser::make_VAR();
+                if (s == "integer")
+                    return yy::parser::make_INT();
+                if (s == "is")
+                   return yy::parser::make_IS();
+                if (!s.empty())// it means it is some identifier name 
+                   return yy::parser::make_IDENT(s); // don't forget to pass the identifier name stored in the string
+            }
+        }
+        else if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_') // reading some name
+        {
+            s += c; // add the char to the string
+        }
+        else
+        {
+            // we don't know what's that so return undefined token
+            return yy::parser::make_YYUNDEF();
+        }
+    }
+}
+int main()
+{
+    fin.open("input.txt");
+    yy::parser p;
+	p.parse();
+    return 0;
+}
+
+namespace yy
+{
+    parser::symbol_type yylex()
+    {
+        return get_next_token();
+    }
+}
+```
+
+
+and for the parser code :
+
+```
+%require "3.2"
+%language "C++"
+%define api.value.type variant
+%define api.token.constructor
+%define parse.assert
+
+%code requires
+{
+    #pragma once
+    #include <iostream>
+    #include <string>
+    
+    // forward decleration (1)
+    namespace yy
+    {
+        class parser;
+    }
+}
+
+%code
+{    
+    namespace yy
+    {
+        parser::symbol_type yylex(); // override (2)
+        // no need to override the error function because it is already waiting for our implementation (3)
+    }
+    /* 
+    because this function is in the main cpp file, we have to tell the compiler that its definition is outside so that Bison won't also generate an implementation by itself.
+    */
+    extern yy::parser::symbol_type get_next_token();
+}
+
+%token IDENT VAR INT IS
+%type <std::string> IDENT
+
+%%
+
+Program:
+|Program VariableDeclaration
+;
+
+VariableDeclaration: VAR IDENT IS INT { std::cout << "defined an int variable " << $2 << "\n"; /* now we will print what we have */ }
+;
+
+%%
+namespace yy
+{
+    void parser::error(const std::string& msg) //(3+)
+    {
+        std::cout<< "syntax error!\n";
+    }
+}
+```
+
+You can find all the final code examples [here](https://github.com/TheSharpOwl/Bison_API_Tutorial/tree/main/Cpp).
+
+**Further Reading:**<br>
+1. [Bison Documentation](https://www.gnu.org/software/bison/manual/bison.html).
+2. [My parser for an imperative programming language](https://github.com/TheSharpOwl/FoobarCompiler/tree/061d6f544a72dcd4acd509b3b933999f4f63a5d6/compiler) (it is C++ Scanner using Bison's C API but it would be useful to read).
+3. [Flex & Bison: Text Processing Tools 1st Edition book
+by John Levine](https://www.amazon.com/flex-bison-Text-Processing-Tools/dp/0596155972).
