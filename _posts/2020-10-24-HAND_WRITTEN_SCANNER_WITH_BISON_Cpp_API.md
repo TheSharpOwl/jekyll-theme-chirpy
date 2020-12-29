@@ -29,13 +29,15 @@ std::string get_next_token()
 {
     std::string s;
     char c;
-	
+
     while (true)
     {
-		// could be done better but organized it like this to edit only assignments and returns when using Bison API
+        // could be done better but organized it like this to edit only assignments and returns when using Bison API
         if (!fin.eof())
             fin.get(c);// get one character
-    	
+        else
+            return "";
+
         if (c == ' ' || c == '\n' || fin.eof())
         {
             if (s.empty()) // we only have this character
@@ -47,15 +49,19 @@ std::string get_next_token()
             }
             else
             {
-                // now we need to put the pointer exactly after the word (undo the last step)
-                fin.unget();
-            	
+                if (!fin.eof())
+                {
+                   // now we need to put the pointer exactly after the word (undo the last step)
+                   // NOTE : don't use unget if you reach the end of the file because it will clear eof bit and bad stuff will happen !!!
+                   fin.unget();
+                }
+
                 if (s == "var") // the last word is var
                     return s;
                 if (s == "integer")
                     return s;
                 if (s == "is")
-					return s;
+                    return s;
                 if (!s.empty())// it means it is some identifier name
                     return  "Identifier";
             }
@@ -66,22 +72,23 @@ std::string get_next_token()
         }
         else
         {
-        	// we don't know what's that
+            // we don't know what's that
             return "ERROR";
         }
     }
 }
 int main()
 {
-    
+
     fin.open("input.txt");
     std::string temp = get_next_token();
-	while(!temp.empty())
-	{
-		// printing a space since our example is only one line for now
+    while (!temp.empty())
+    {
+        // printing a space since our example is only one line for now
         std::cout << temp << " ";
         temp = get_next_token();
-	}
+
+    }
     return 0;
 }
 ```
