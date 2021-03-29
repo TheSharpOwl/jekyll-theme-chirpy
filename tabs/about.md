@@ -11,7 +11,7 @@ title: About
 ### Software Engineering bachelor. <br>
 <br>
 
-* ### [Resume Link](https://drive.google.com/file/d/1yNQCq0ny76YBu5WbTqX5CU35F9rqyn27/view?usp=sharing)
+* ### [Resume Link](https://drive.google.com/file/d/1E0jMSy4L3QqASmIVir3xt4eSLXRMvEm0/view?usp=sharing)
 * ### Github: [TheSharpOwl](https://github.com/TheSharpOwl) 
 
 <br>
