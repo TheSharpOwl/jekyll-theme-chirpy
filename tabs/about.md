@@ -13,7 +13,9 @@ title: About
 
 * ### [Resume Link](https://drive.google.com/file/d/1E0jMSy4L3QqASmIVir3xt4eSLXRMvEm0/view?usp=sharing)
 * ### Github: [TheSharpOwl](https://github.com/TheSharpOwl) 
-
+* ### Codeforces: [Silver_](http://codeforces.com/profile/Silver_)
+* ### [Linkedin](https://www.linkedin.com/in/mohamad-ziad-a-999771118/)
+* ### [Youtube Channel](https://www.youtube.com/channel/UCypgX5uHk5ezqPCVKIVq2ow) (For now I just post demos of projects there...)
 <br>
 # Experience:
 
